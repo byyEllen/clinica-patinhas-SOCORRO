@@ -13,17 +13,21 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares
-app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:5173' }));
-app.use(express.json());
+const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5173";
 
-// Conectar ao banco de dados
+app.use(
+  cors({
+    origin: CORS_ORIGIN,
+    credentials: true,
+  })
+);
+
+app.use(express.json());
 connectDatabase();
 
 setupSwagger(app);
 
 
-// Rotas
 app.use('/api/auth', authRoutes);
 app.use('/api/pets', petRoutes);
 app.use('/api/consultas', consultaRoutes);
@@ -38,4 +42,6 @@ app.get('/', (req, res) => {
 });
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
+  console.log(`📡 CORS enabled for: ${CORS_ORIGIN}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`);
 });
