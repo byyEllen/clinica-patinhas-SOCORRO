@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes';
 import petRoutes from './routes/petRoutes';
 import consultaRoutes from './routes/consultaRoutes';
 import vacinaRoutes from './routes/vacinaRoutes';
+import { Request, Response } from "express";
 import { setupSwagger } from './config/swagger';
 
 dotenv.config();
@@ -34,10 +35,10 @@ app.use('/api/consultas', consultaRoutes);
 app.use('/api/vacinas', vacinaRoutes);
 
 // Rota de teste
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.json({ 
     message: '🐾 API Clínica Veterinária rodando!',
-    docs: '/api-docs'  // ← ADICIONE
+    docs: '/api-docs' 
   });
 });
 app.listen(PORT, () => {
