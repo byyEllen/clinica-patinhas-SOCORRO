@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  senha     String
+  createdAt DateTime @default(now())
+  pets      Pet[]
+
+  @@map("users")
+}
+
+model Pet {
+  id            String     @id @default(uuid())
+  nome          String
+  especie       String
+  raca          String
+  idade         Int
+  donoId        String
+  donoNome      String
+  donoTelefone  String
+  createdAt     DateTime   @default(now())
+  user          User       @relation(fields: [donoId], references: [id], onDelete: Cascade)
+  consultas     Consulta[]
+  carteiraSaude CarteiraSaude?
+
+  @@map("pets")
+}
+
+model Consulta {
+  id            String   @id @default(uuid())
+  petId         String
+  petNome       String
+  donoNome      String
+  donoTelefone  String
+  veterinario   String
+  motivo        String
+  data          String
+  hora          String
+  createdAt     DateTime @default(now())
+  pet           Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@map("consultas")
+}
+
+model Vacina {
+  id            String   @id @default(uuid())
+  nome          String
+  descricao     String
+  precoFilhote  Float
+  precoAdulto   Float
+  idadeMinima   Int
+  carteiras     CarteiraSaude[] @relation("VacinasAplicadas")
+  proximasVacinas CarteiraSaude[] @relation("VacinasPendentes")
+
+  @@map("vacinas")
+}
+
+model CarteiraSaude {
+  id                String   @id @default(uuid())
+  petId             String   @unique
+  pet               Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+  vacinasAplicadas  Vacina[] @relation("VacinasAplicadas")
+  proximasVacinas   Vacina[] @relation("VacinasPendentes")
+
+  @@map("carteiras_saude")
+}
