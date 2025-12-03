@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes';
 import petRoutes from './routes/petRoutes';
 import consultaRoutes from './routes/consultaRoutes';
 import vacinaRoutes from './routes/vacinaRoutes';
+import { setupSwagger } from './config/swagger';
 
 dotenv.config();
 
@@ -19,6 +20,9 @@ app.use(express.json());
 // Conectar ao banco de dados
 connectDatabase();
 
+setupSwagger(app);
+
+
 // Rotas
 app.use('/api/auth', authRoutes);
 app.use('/api/pets', petRoutes);
@@ -27,9 +31,11 @@ app.use('/api/vacinas', vacinaRoutes);
 
 // Rota de teste
 app.get('/', (req, res) => {
-  res.json({ message: '🐾 API Clínica Veterinária rodando com PostgreSQL + Prisma!' });
+  res.json({ 
+    message: '🐾 API Clínica Veterinária rodando!',
+    docs: '/api-docs'  // ← ADICIONE
+  });
 });
-
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
