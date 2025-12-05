@@ -7,7 +7,7 @@ import { PetsPage } from './components/Pages/PetsPage';
 import { ConsultasPage } from './components/Pages/ConsultasPage';
 import { VacinasPage } from './components/Pages/VacinasPage';
 import { authApi } from './services/api';
-import type { User } from './types';
+import type { User } from '../types';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');

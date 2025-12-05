@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { X } from 'lucide-react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { petApi, vacinaApi } from '../../services/api';
-import { Pet, Vacina } from '../../types';
+import { Pet, Vacina } from '../../../types';
 
 interface VacinasPageProps {
   onBack: () => void;

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Search, Calendar, Edit2, Save, X } from 'lucide-react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { consultaApi } from '../../services/api';
-import { Consulta } from '../../types';
+import { Consulta } from '../../../types';
 
 interface ConsultasPageProps {
   onBack: () => void;

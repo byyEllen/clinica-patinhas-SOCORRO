@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { authApi } from '../../services/api';
-import { User } from '../../types';
+import { User } from '../../../types';
 
 interface LoginPageProps {
   onLogin: (user: User) => void;

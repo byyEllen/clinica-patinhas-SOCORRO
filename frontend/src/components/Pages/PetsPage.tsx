@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Search, Plus, Edit2, Save, X } from 'lucide-react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { petApi } from '../../services/api';
-import { Pet } from '../../types';
+import { Pet } from '../../../types';
 
 interface PetsPageProps {
   onBack: () => void;
