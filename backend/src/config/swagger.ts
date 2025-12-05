@@ -11,16 +11,16 @@ const options = {
       description: 'API REST para gerenciamento de clínica veterinária com autenticação JWT, CRUD de pacientes, consultas e carteira de vacinação.',
       contact: {
         name: 'Suporte',
-        email: 'contato@clinicapet.com'
+        email: 'contato@clinicaPatinhas.com'
       }
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'https://clinica-frontend-a934.onrender.com',
         description: 'Servidor de Desenvolvimento'
       },
       {
-        url: 'https://clinica-veterinaria-backend.onrender.com',
+        url: 'https://clinica-patinhas-socorro.onrender.com',
         description: 'Servidor de Produção'
       }
     ],
