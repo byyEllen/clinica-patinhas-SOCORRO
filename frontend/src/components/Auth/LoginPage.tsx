@@ -3,6 +3,7 @@ import { ThemeContext } from '../../context/ThemeContext';
 import { authApi } from '../../services/api';
 import { User } from '../../../types';
 
+
 interface LoginPageProps {
   onLogin: (user: User) => void;
 }
